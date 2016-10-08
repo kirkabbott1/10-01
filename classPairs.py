@@ -4,17 +4,14 @@ from os.path import exists
 
 dcList = ["curt", "Eli", "Juanito", "Carebear", "Kevin", "Copes", "Rob", "Jesslynn", "Key", "Json", "Ben", "Trista", "Matt", "Autumn", "Dom", "ShooHAY"]
 
+
+print 'loading previous pairs'
 previous_file = open('previous.pickle', 'r')
 previousDict = pickle.load(previous_file)
 print previousDict
-previous_file.close()
-previousDict = {'Carebear': 'Copes', 'Dom': 'Kevin', 'curt': 'Jesslynn', 'Key': 'Autumn', 'Json': 'ShooHAY', 'Juanito': 'Rob', 'ShooHAY': 'Matt', 'Eli': 'Trista'}
+# previous_file.close()
 
-
-
-
-
-print 'previous pairs updated'
+# previousDict = {'Carebear': 'Copes', 'Dom': 'Kevin', 'curt': 'Jesslynn', 'Key': 'Autumn', 'Json': 'ShooHAY', 'Juanito': 'Rob', 'ShooHAY': 'Matt', 'Eli': 'Trista'}
 
 def rndmPairs():
 
@@ -39,8 +36,11 @@ def rndmPairs():
     for key, value in pairsDict.items():
         print "Pair %d: %s and %s" % (i, key, value)
         i += 1
-    previous_file = open('previous.pickle', 'w')
-    pickle.dump(previousDict, previous_file)
+    previous_file = open('previous.pickle', 'a')
+    pickle.dump(pairsDict, previous_file)
     previous_file.close()
+    # print 'previousdict saved'
+    # print previousDict
+    # print pairsDict
 
 rndmPairs()
