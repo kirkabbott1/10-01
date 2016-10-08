@@ -1,12 +1,24 @@
 import random
+import pickle
+from os.path import exists
+
+dcList = ["curt", "Eli", "Juanito", "Carebear", "Kevin", "Copes", "Rob", "Jesslynn", "Key", "Json", "Ben", "Trista", "Matt", "Autumn", "Dom", "ShooHAY"]
+
+previous_file = open('previous.pickle', 'r')
+previousDict = pickle.load(previous_file)
+print previousDict
+previous_file.close()
+previousDict = {'Carebear': 'Copes', 'Dom': 'Kevin', 'curt': 'Jesslynn', 'Key': 'Autumn', 'Json': 'ShooHAY', 'Juanito': 'Rob', 'ShooHAY': 'Matt', 'Eli': 'Trista'}
+
+
+
+
+
+print 'previous pairs updated'
 
 def rndmPairs():
-    dcList = ["curt", "Eli", "Juanito", "Carebear", "Kevin", "Copes", "Rob", "Jesslynn", "Key", "Jason", "Ben", "Trista", "Matt", "Autumn", "Dom", "ShooHAY"]
-
-    previousDict = {'Carebear': 'Copes', 'Dom': 'Kevin', 'curt': 'Jesslynn', 'Key': 'Autumn', 'Jason': 'ShooHAY', 'Juanito': 'Rob', 'ShooHAY': 'Matt', 'Eli': 'Trista'}
 
     pairsDict = {}
-
 
     while len(dcList) > 0:
         #for random index of range, respective name is popped out
@@ -27,4 +39,8 @@ def rndmPairs():
     for key, value in pairsDict.items():
         print "Pair %d: %s and %s" % (i, key, value)
         i += 1
+    previous_file = open('previous.pickle', 'w')
+    pickle.dump(previousDict, previous_file)
+    previous_file.close()
+
 rndmPairs()
